@@ -1,4 +1,4 @@
-package com.squadio_task.newarchitecture;
+package com.task___.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.squadio_task.BuildConfig;
-import com.squadio_task.newarchitecture.components.MainComponentsRegistry;
-import com.squadio_task.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.task___.BuildConfig;
+import com.task___.newarchitecture.components.MainComponentsRegistry;
+import com.task___.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

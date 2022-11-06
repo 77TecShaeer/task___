@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface squadio_taskTests : XCTestCase
+@interface task___Tests : XCTestCase
 
 @end
 
-@implementation squadio_taskTests
+@implementation task___Tests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

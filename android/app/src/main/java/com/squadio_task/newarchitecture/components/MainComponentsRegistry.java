@@ -1,4 +1,4 @@
-package com.squadio_task.newarchitecture.components;
+package com.task___.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

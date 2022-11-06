@@ -32,7 +32,6 @@ const UserDetails = ({route}: Props) => {
   const {data, isLoading, deleteAddress, mutationAddAddress} = useUserDetails(
     route.params.email!,
   );
-  // let info = useDataUserDetails();
   const navigation = useNavigation<any>();
 
   const renderItem = useCallback(

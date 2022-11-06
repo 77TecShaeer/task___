@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   FlatList,
@@ -11,13 +12,15 @@ import {
   moderateScale,
   responsiveWidth,
 } from '../../Common/responsiveDimensions';
+import {NavigationKey} from '../../Navigation/types';
 import Row from './Components/Row';
 import useUsers from './Logic/useUsers';
 import {UserObject} from './types/types';
 import {styles} from './Users.styles';
 
 const Users = () => {
-  const {data, isLoading, deleteUser} = useUsers();
+  const {data, isLoading, deleteUser, mutationAddUser} = useUsers();
+  const navigation = useNavigation<any>();
 
   const renderItem = useCallback(
     ({item}: ListRenderItemInfo<UserObject>) => (
@@ -29,7 +32,6 @@ const Users = () => {
     (item: UserObject) => `users_list_${item.id}`,
     [],
   );
-  console.log('data', data);
 
   const [usersData, setUsersData] = useState([]);
   const [locations, setLocations] = useState([]);
@@ -62,6 +64,26 @@ const Users = () => {
           />
         </>
       )}
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          backgroundColor: 'red',
+          bottom: 10,
+          height: 40,
+          width: 40,
+          borderRadius: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
+          left: 10,
+        }}
+        onPress={() =>
+          navigation.navigate(NavigationKey.EditUser, {
+            add: true,
+            mutationAddUser,
+          })
+        }>
+        <Text style={{fontSize: 30}}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 };

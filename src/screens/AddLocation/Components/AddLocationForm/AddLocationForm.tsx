@@ -1,4 +1,5 @@
 import {yupResolver} from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
 import {Button, View} from 'react-native';
@@ -6,7 +7,9 @@ import AppInput from '../../../../Components/AppInput/AppInput';
 import {styles} from './AddLocationForm.styles';
 import {schema} from './Validation';
 
-export const AddLocationForm = ({mutationAddAddress}: any) => {
+export const AddLocationForm = ({mutationAddAddress, getLatLng}: any) => {
+  const navigation = useNavigation<any>();
+
   const {
     control,
     handleSubmit,
@@ -20,8 +23,12 @@ export const AddLocationForm = ({mutationAddAddress}: any) => {
   });
   // const {mutationLogin} = useLogin();
 
-  const onSubmit = (data: {lat: string; lng: string}) =>
-    mutationAddAddress.mutate(data);
+  const onSubmit = (data: {lat: string; lng: string}) => {
+    if (getLatLng) {
+      getLatLng(data);
+      navigation.goBack();
+    } else mutationAddAddress.mutate(data);
+  };
 
   return (
     <View>

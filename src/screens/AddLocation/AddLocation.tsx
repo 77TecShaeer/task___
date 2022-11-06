@@ -5,7 +5,7 @@ import {styles} from './AddLocation.styles';
 import {AddLocationForm} from './Components/AddLocationForm/AddLocationForm';
 
 type CustomPropsUserDetails = {
-  AddLocation: {mutationAddAddress: Function};
+  AddLocation: {mutationAddAddress?: Function; getLatLng?: Function};
 };
 
 type Props = NativeStackScreenProps<
@@ -20,6 +20,7 @@ const AddLocation: React.FC<Props> = (props: Props) => {
       <Text style={styles.LoginText}>AddLocation</Text>
       <AddLocationForm
         mutationAddAddress={props.route.params.mutationAddAddress}
+        getLatLng={props.route.params.getLatLng}
       />
     </View>
   );
