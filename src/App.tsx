@@ -1,24 +1,26 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import React from 'react';
-import Home from './screens/Home';
+import {SafeAreaView, ActivityIndicator} from 'react-native';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import useConfigAxios from './Common/useConfigAxios';
+import RootNavigator from './Navigation/RootNavigator';
+import {PersistGate} from 'redux-persist/integration/react';
+import {Provider} from 'react-redux';
+import {persistor, store} from './Redux/Store';
+
+const queryClient = new QueryClient();
 
 const App = () => {
-  const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={'Home'}
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+          <SafeAreaView style={{flex: 1, alignSelf: 'stretch'}}>
+            <RootNavigator />
+          </SafeAreaView>
+        </QueryClientProvider>
+      </PersistGate>
+    </Provider>
   );
 };
 
